@@ -13,15 +13,13 @@ import android.os.RemoteException;
 import android.system.Os;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import org.lsposed.lspatch.loader.util.FileUtils;
 import org.lsposed.lspatch.loader.util.XLog;
 import org.lsposed.lspatch.service.LocalApplicationService;
 import org.lsposed.lspatch.service.RemoteApplicationService;
-import org.lsposed.lspatch.share.PatchConfig;
 import org.lsposed.lspd.core.Startup;
 import org.lsposed.lspd.service.ILSPApplicationService;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.XposedHelpers;
@@ -58,7 +57,7 @@ public class LSPApplication {
     private static LoadedApk stubLoadedApk;
     private static LoadedApk appLoadedApk;
 
-    private static PatchConfig config;
+    private static JSONObject config;
 
     public static boolean isIsolated() {
         return (android.os.Process.myUid() % PER_USER_RANGE) >= FIRST_APP_ZYGOTE_ISOLATED_UID;
@@ -78,7 +77,7 @@ public class LSPApplication {
 
         Log.d(TAG, "Initialize service client");
         ILSPApplicationService service;
-        if (config.useManager) {
+        if (config.optBoolean("useManager")) {
             service = new RemoteApplicationService(context);
         } else {
             service = new LocalApplicationService(context);
@@ -94,7 +93,7 @@ public class LSPApplication {
         Log.i(TAG, "Modules initialized");
 
         switchAllClassLoader();
-        SigBypass.doSigBypass(context, config.sigBypassLevel);
+        SigBypass.doSigBypass(context, config.optInt("sigBypassLevel"));
 
         Log.i(TAG, "LSPatch bootstrap completed");
     }
@@ -110,13 +109,13 @@ public class LSPApplication {
 
             try (var is = baseClassLoader.getResourceAsStream(CONFIG_ASSET_PATH)) {
                 BufferedReader streamReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-                config = new Gson().fromJson(streamReader, PatchConfig.class);
-            } catch (IOException e) {
-                Log.e(TAG, "Failed to load config file");
+                config = new JSONObject(streamReader.lines().collect(Collectors.joining()));
+            } catch (Throwable e) {
+                Log.e(TAG, "Failed to parse config file", e);
                 return null;
             }
-            Log.i(TAG, "Use manager: " + config.useManager);
-            Log.i(TAG, "Signature bypass level: " + config.sigBypassLevel);
+            Log.i(TAG, "Use manager: " + config.optBoolean("useManager"));
+            Log.i(TAG, "Signature bypass level: " + config.optInt("sigBypassLevel"));
 
             Path originPath = Paths.get(appInfo.dataDir, "cache/lspatch/origin/");
             Path cacheApkPath;
@@ -126,7 +125,9 @@ public class LSPApplication {
 
             appInfo.sourceDir = cacheApkPath.toString();
             appInfo.publicSourceDir = cacheApkPath.toString();
-            appInfo.appComponentFactory = config.appComponentFactory;
+            if (config.has("appComponentFactory")) {
+                appInfo.appComponentFactory = config.optString("appComponentFactory");
+            }
 
             if (!Files.exists(cacheApkPath)) {
                 Log.i(TAG, "Extract original apk");
@@ -165,11 +166,11 @@ public class LSPApplication {
             Log.i(TAG, "hooked app initialized: " + appLoadedApk);
 
             var context = (Context) XposedHelpers.callStaticMethod(Class.forName("android.app.ContextImpl"), "createAppContext", activityThread, stubLoadedApk);
-            if (config.appComponentFactory != null) {
+            if (config.has("appComponentFactory")) {
                 try {
-                    context.getClassLoader().loadClass(config.appComponentFactory);
+                    context.getClassLoader().loadClass(appInfo.appComponentFactory);
                 } catch (ClassNotFoundException e) { // This will happen on some strange shells like 360
-                    Log.w(TAG, "Original AppComponentFactory not found: " + config.appComponentFactory);
+                    Log.w(TAG, "Original AppComponentFactory not found: " + appInfo.appComponentFactory);
                     appInfo.appComponentFactory = null;
                 }
             }
@@ -207,6 +208,10 @@ public class LSPApplication {
             File curProfileFile = new File(profileDir, splitName == null ? "primary.prof" : splitName + ".split.prof").getAbsoluteFile();
             Log.d(TAG, "Processing " + curProfileFile.getAbsolutePath());
             try {
+                if (!curProfileFile.exists()) {
+                    Files.createFile(curProfileFile.toPath(), attrs);
+                    continue;
+                }
                 if (!curProfileFile.canWrite() && Files.size(curProfileFile.toPath()) == 0) {
                     Log.d(TAG, "Skip profile " + curProfileFile.getAbsolutePath());
                     continue;
@@ -218,8 +223,6 @@ public class LSPApplication {
                         Log.e(TAG, "Failed to delete and clear profile file " + curProfileFile.getAbsolutePath(), e);
                     }
                     Os.chmod(curProfileFile.getAbsolutePath(), 00400);
-                } else {
-                    Files.createFile(curProfileFile.toPath(), attrs);
                 }
             } catch (Throwable e) {
                 Log.e(TAG, "Failed to disable profile file " + curProfileFile.getAbsolutePath(), e);
