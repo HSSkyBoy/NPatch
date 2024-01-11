@@ -17,15 +17,19 @@
 CI构建版本→请前往[Github Actions](https://github.com/HSSkyBoy/NPatch/actions)  
 注意: debug版本只能在Github Actions中使用 
 
-## Usage
+## 使用方式
 
-+ Through jar
-1. Download `lspatch.jar`
-1. Run `java -jar lspatch.jar`
++ 通过 jar
+1. 下载 `lspatch.jar`
+2. 运行 `java -jar lspatch.jar`
 
 + Through manager
-1. Download and install `manager.apk` on an Android device
-1. Follow the instructions of the manager app
+1. 下载并安装`*.apk`在你的安卓(或鸿蒙)设备上
+2. 按照应用的方式使用
+
+## Star 数
+
+[![Star History Chart](https://api.star-history.com/svg?repos=HSSkyBoy/NPatch&type=Date)](https://star-history.com/#HSSkyBoy/NPatch&Date)
 
 ## Translation Contributing
 
