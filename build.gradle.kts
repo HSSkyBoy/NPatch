@@ -86,7 +86,7 @@ fun Project.configureBaseExtension() {
         defaultConfig {
             minSdk = androidMinSdkVersion
             targetSdk = androidTargetSdkVersion
-            versionCode = verCode
+            versionCode = 10
             versionName = verName
 
             signingConfigs.create("config") {
