@@ -5,11 +5,13 @@
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/> 
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
 
     <application
@@ -21,7 +23,7 @@
         android:theme="@style/Theme.Material3.DayNight.NoActionBar">
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="org.lsposed.lspatch.ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +44,22 @@
             android:name=".manager.ModuleService"
             android:exported="true" />
 
+        <service
+            android:name="org.lsposed.lspatch.manager.ModuleService"
+            android:exported="true"
+            tools:ignore="ExportedService" />
+            
+        <provider
+            android:authorities="org.lsposed.lspatch.FileProvider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        
         <provider
             android:name="rikka.shizuku.ShizukuProvider"
             android:authorities="org.lsposed.lspatch.shizuku"

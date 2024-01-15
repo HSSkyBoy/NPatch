@@ -18,6 +18,7 @@ buildscript {
     }
     dependencies {
         classpath("org.eclipse.jgit:org.eclipse.jgit:6.3.0.202209071007-r")
+        classpath(kotlin("gradle-plugin", version = "1.8.21"))
     }
 }
 
@@ -86,7 +87,7 @@ fun Project.configureBaseExtension() {
         defaultConfig {
             minSdk = androidMinSdkVersion
             targetSdk = androidTargetSdkVersion
-            versionCode = 10
+            versionCode = verCode
             versionName = verName
 
             signingConfigs.create("config") {
@@ -122,7 +123,7 @@ fun Project.configureBaseExtension() {
                     cFlags("-std=c18", *flags)
                     arguments(
                         "-DANDROID_STL=none",
-                        "-DVERSION_CODE=$verCode",
+                        "-DVERSION_CODE=10",
                         "-DVERSION_NAME=$verName",
                     )
                 }

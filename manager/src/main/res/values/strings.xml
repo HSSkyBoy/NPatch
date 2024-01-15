@@ -58,6 +58,8 @@
     <string name="patch_integrated_desc">Patch an app with modules embedded.\nThe patched app can run without the manager, but cannot be managed dynamically.\nIntegrated patched apps can be used on devices that do not have LSPatch Manager installed.</string>
     <string name="patch_embed_modules">Embed modules</string>
     <string name="patch_debuggable">Debuggable</string>
+    <string name="patch_inject_mt_provider">Inject Documents Provider</string>
+    <string name="patch_inject_mt_provider_desc">Inject Documents Provider to manage files in the data directory without root privileges (by MT Manager)</string>
     <string name="patch_sigbypass">Signature bypass</string>
     <string name="patch_sigbypasslv0">lv0: Off</string>
     <string name="patch_sigbypasslv1">lv1: Bypass PM</string>

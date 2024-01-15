@@ -31,8 +31,8 @@ import java.util.concurrent.TimeoutException;
 
 public class RemoteApplicationService implements ILSPApplicationService {
 
-    private static final String TAG = "LSPatch";
-    private static final String MODULE_SERVICE = Constants.MANAGER_PACKAGE_NAME + ".manager.ModuleService";
+    private static final String TAG = "OPatch";
+    private static final String MODULE_SERVICE = "org.lsposed.lspatch.manager.ModuleService";
 
     private volatile ILSPApplicationService service;
 
@@ -76,7 +76,7 @@ public class RemoteApplicationService implements ILSPApplicationService {
             if (!success) throw new TimeoutException("Bind service timeout");
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
                  InterruptedException | TimeoutException e) {
-            Toast.makeText(context, "Unable to connect to Manager", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Manager died", Toast.LENGTH_SHORT).show();
             var r = new RemoteException("Failed to get manager binder");
             r.initCause(e);
             throw r;

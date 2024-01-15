@@ -56,7 +56,9 @@
     <string name="patch_integrated_desc">修补 App 并内置模块。\n经修补的应用可以在没有管理器的情况下运行，但不能动态管理配置。\n以集成模式修补的应用可在未安装 LSPatch 管理器的设备上运行。</string>
     <string name="patch_embed_modules">嵌入模块</string>
     <string name="patch_debuggable">可调试</string>
-    <string name="patch_sigbypass">破解签名校验</string>
+    <string name="patch_inject_mt_provider">注入文件提供器</string>
+    <string name="patch_inject_mt_provider_desc">注入文件提供器以在没有root权限的情况下管理data目录的文件(来自MT管理器)</string>
+    <string name="patch_sigbypass">去签校</string>
     <string name="patch_sigbypasslv0">lv0: 关闭</string>
     <string name="patch_sigbypasslv1">lv1: 绕过 PM</string>
     <string name="patch_sigbypasslv2">lv2: 绕过 PM + openat (libc)</string>

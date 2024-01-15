@@ -4,7 +4,9 @@ public class PatchConfig {
 
     public final boolean useManager;
     public final boolean debuggable;
+    public final boolean injectProvider;
     public final boolean overrideVersionCode;
+    public final boolean outputLog;
     public final int sigBypassLevel;
     public final String originalSignature;
     public final String appComponentFactory;
@@ -16,7 +18,9 @@ public class PatchConfig {
             boolean overrideVersionCode,
             int sigBypassLevel,
             String originalSignature,
-            String appComponentFactory
+            String appComponentFactory,
+            boolean injectProvider,
+            boolean outputLog
     ) {
         this.useManager = useManager;
         this.debuggable = debuggable;
@@ -25,5 +29,7 @@ public class PatchConfig {
         this.originalSignature = originalSignature;
         this.appComponentFactory = appComponentFactory;
         this.lspConfig = LSPConfig.instance;
+        this.injectProvider = injectProvider;
+        this.outputLog = outputLog;
     }
 }

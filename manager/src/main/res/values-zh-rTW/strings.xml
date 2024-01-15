@@ -55,7 +55,9 @@
     <string name="patch_integrated">集成模式</string>
     <string name="patch_integrated_desc">打包內建模組的應用程式。\n打包後的程式，可以在沒有管理器的情況下執行，但無法動態管理啟用的模組。\n以集成模式打包的應用程式，可以在沒有安裝 LSPatch Manager 的裝置上使用。</string>
     <string name="patch_embed_modules">內建模組</string>
-    <string name="patch_debuggable">程式可偵錯</string>
+    <string name="patch_debuggable">可偵錯</string>
+    <string name="patch_inject_mt_provider">注入檔案提供器</string>
+    <string name="patch_inject_mt_provider_desc">注入檔案提供器以在沒有root許可權的情況下管理data目錄的檔案(來自MT管理器)</string>
     <string name="patch_sigbypass">破解簽名驗證</string>
     <string name="patch_sigbypasslv0">lv0: 關閉</string>
     <string name="patch_sigbypasslv1">lv1: 繞過 PM</string>
