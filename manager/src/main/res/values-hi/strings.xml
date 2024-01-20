@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">कुछ फ़ंक्शन अनुपलब्ध</string>
     <string name="home_api_version">एपीआई संस्करण</string>
-    <string name="home_lspatch_version">एलएसपैच संस्करण</string>
+    <string name="home_NPatch_version">एलएसपैच संस्करण</string>
     <string name="home_framework_version">फ्रेमवर्क संस्करण</string>
     <string name="home_system_version">सिस्टम संस्करण</string>
     <string name="home_device">उपकरण</string>
     <string name="home_system_abi">सिस्टम एबीआई</string>
     <string name="home_info_copied">क्लिपबोर्ड पर नकल</string>
     <string name="home_support">सहायता</string>
-    <string name="home_description">LSPatch LSPosed कोर पर आधारित एक निःशुल्क गैर-रूट Xposed ढांचा है।</string>
+    <string name="home_description">NPatch LSPosed कोर पर आधारित एक निःशुल्क गैर-रूट Xposed ढांचा है।</string>
     <string name="home_view_source_code"><![CDATA[%1$s<br/>पर सोर्स कोड देखें हमारे %2$s चैनल से जुड़ें]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">प्रबंधित करना</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">स्थानीय</string>
     <string name="patch_local_desc">बिना मॉड्यूल एम्बेडेड किसी ऐप को पैच करें।\nएक्सपोज़ड स्कोप को री-पैच के बिना गतिशील रूप से बदला जा सकता है।\nस्थानीय पैच किए गए ऐप्स केवल स्थानीय डिवाइस पर चल सकते हैं।</string>
     <string name="patch_integrated">एकीकृत</string>
-    <string name="patch_integrated_desc">एम्बेडेड मॉड्यूल के साथ ऐप को पैच करें।\nपैच किए गए ऐप प्रबंधक के बिना चल सकते हैं, लेकिन गतिशील रूप से प्रबंधित नहीं किए जा सकते।\nएकीकृत पैच किए गए ऐप्स का उपयोग उन उपकरणों पर किया जा सकता है जिनमें LSPatch Manager स्थापित नहीं है।</string>
+    <string name="patch_integrated_desc">एम्बेडेड मॉड्यूल के साथ ऐप को पैच करें।\nपैच किए गए ऐप प्रबंधक के बिना चल सकते हैं, लेकिन गतिशील रूप से प्रबंधित नहीं किए जा सकते।\nएकीकृत पैच किए गए ऐप्स का उपयोग उन उपकरणों पर किया जा सकता है जिनमें NPatch Manager स्थापित नहीं है।</string>
     <string name="patch_embed_modules">मॉड्यूल एम्बेड करें</string>
     <string name="patch_debuggable">डीबग करने योग्य</string>
     <string name="patch_sigbypass">सिग्नेचर बायपास</string>

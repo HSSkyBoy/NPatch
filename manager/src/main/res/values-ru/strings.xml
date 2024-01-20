@@ -56,6 +56,7 @@
     <string name="patch_integrated_desc">Патч приложения со встроенными модулями.\nПатченное приложение может работать без менеджера, но не может управляться динамически.\nПортативные патченные приложения могут быть использованы на устройствах, у которых не установлен LSPatch менеджер</string>
     <string name="patch_embed_modules">Встроить модули</string>
     <string name="patch_debuggable">Отладка</string>
+    <string name="output log to media"> Выходной журнал в каталог media </ string>
     <string name="patch_sigbypass">Обход подписи</string>
     <string name="patch_sigbypasslv0">lv0: Выкл.</string>
     <string name="patch_sigbypasslv1">lv1: Обход PM</string>

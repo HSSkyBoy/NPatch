@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Algumas funções indisponíveis</string>
     <string name="home_api_version">Versão da API</string>
-    <string name="home_lspatch_version">Versão LSPatch</string>
+    <string name="home_NPatch_version">Versão NPatch</string>
     <string name="home_framework_version">Versão da estrutura</string>
     <string name="home_system_version">Versão do sistema</string>
     <string name="home_device">Dispositivo</string>
     <string name="home_system_abi">Sistema ABI</string>
     <string name="home_info_copied">Copiado para a área de transferência</string>
     <string name="home_support">Apoiar</string>
-    <string name="home_description">LSPatch é uma estrutura Xposed não raiz gratuita baseada no núcleo LSPosed.</string>
+    <string name="home_description">NPatch é uma estrutura Xposed não raiz gratuita baseada no núcleo LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Veja o código fonte em %1$s<br/>Junte-se ao nosso %2$s canais]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Gerir</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Local</string>
     <string name="patch_local_desc">Corrigir uma aplicação sem módulos incorporados.\nO escopo do Xposed pode ser alterado dinamicamente sem a necessidade de re-patch.\nOs aplicativos locais corrigidos só podem ser executados no dispositivo local.</string>
     <string name="patch_integrated">Integrado</string>
-    <string name="patch_integrated_desc">Corrija um aplicativo com módulos incorporados.\nO aplicativo corrigido pode ser executado sem o gerenciador, mas não pode ser gerenciado dinamicamente.\nAplicativos corrigidos integrados podem ser usados em dispositivos que não possuem o LSPatch Manager instalado.</string>
+    <string name="patch_integrated_desc">Corrija um aplicativo com módulos incorporados.\nO aplicativo corrigido pode ser executado sem o gerenciador, mas não pode ser gerenciado dinamicamente.\nAplicativos corrigidos integrados podem ser usados em dispositivos que não possuem o NPatch Manager instalado.</string>
     <string name="patch_embed_modules">Incorporar módulos</string>
     <string name="patch_debuggable">Depurável</string>
     <string name="patch_sigbypass">Bypass de assinatura</string>

@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Niektóre funkcje niedostępne</string>
     <string name="home_api_version">Wersja API</string>
-    <string name="home_lspatch_version">Wersja LSPatch</string>
+    <string name="home_NPatch_version">Wersja NPatch</string>
     <string name="home_framework_version">Wersja Frameworka</string>
     <string name="home_system_version">Wersja systemu</string>
     <string name="home_device">Urządzenie</string>
     <string name="home_system_abi">ABI systemu</string>
     <string name="home_info_copied">Skopiowane do schowka</string>
     <string name="home_support">Wsparcie</string>
-    <string name="home_description">LSPatch jest darmowym odłamem non-root Xposed framework bazowanym na rdzeniu LSPosed.</string>
+    <string name="home_description">NPatch jest darmowym odłamem non-root Xposed framework bazowanym na rdzeniu LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Zobacz kod źródłowy na %1$s<br/>Dołącz do naszego kanału %2$s]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Zarządzaj</string>

@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Sommige functies niet beschikbaar</string>
     <string name="home_api_version">API-versie</string>
-    <string name="home_lspatch_version">LSPatch-versie</string>
+    <string name="home_NPatch_version">NPatch-versie</string>
     <string name="home_framework_version">Framework-versie</string>
     <string name="home_system_version">Systeemversie</string>
     <string name="home_device">Apparaat</string>
     <string name="home_system_abi">Systeem ABI</string>
     <string name="home_info_copied">Gekopieerd naar het klembord</string>
     <string name="home_support">Steun</string>
-    <string name="home_description">LSPatch is een gratis niet-root Xposed-framework op basis van LSPosed-kern.</string>
+    <string name="home_description">NPatch is een gratis niet-root Xposed-framework op basis van LSPosed-kern.</string>
     <string name="home_view_source_code"><![CDATA[Bekijk de broncode op %1$s<br/>Word lid van ons %2$s -kanaal]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Beheer</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">lokaal</string>
     <string name="patch_local_desc">Een app patchen zonder geïntegreerde modules.\nXposed scope kan dynamisch worden gewijzigd zonder opnieuw te patchen.\nLokaal gepatchte apps kunnen alleen draaien op het lokale apparaat.</string>
     <string name="patch_integrated">Geïntegreerd</string>
-    <string name="patch_integrated_desc">Patch een app met ingesloten modules.\nDe gepatchte app kan zonder de manager worden uitgevoerd, maar kan niet dynamisch worden beheerd.\nGeïntegreerde gepatchte apps kunnen worden gebruikt op apparaten waarop LSPatch Manager niet is geïnstalleerd.</string>
+    <string name="patch_integrated_desc">Patch een app met ingesloten modules.\nDe gepatchte app kan zonder de manager worden uitgevoerd, maar kan niet dynamisch worden beheerd.\nGeïntegreerde gepatchte apps kunnen worden gebruikt op apparaten waarop NPatch Manager niet is geïnstalleerd.</string>
     <string name="patch_embed_modules">Modules insluiten</string>
     <string name="patch_debuggable">Foutopsporing</string>
     <string name="patch_sigbypass">Handtekening bypass</string>
