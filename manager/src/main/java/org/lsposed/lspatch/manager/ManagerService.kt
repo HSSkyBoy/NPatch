@@ -1,7 +1,6 @@
 package org.lsposed.lspatch.manager
 
 import android.os.Binder
-import android.os.Bundle
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
 import android.util.Log
@@ -20,7 +19,7 @@ object ManagerService : ILSPApplicationService.Stub() {
         val list = app?.let {
             runBlocking { ConfigManager.getModuleFilesForApp(it) }
         }.orEmpty()
-        Log.d(TAG, "$app calls getLegacyModulesList: $list")
+        Log.d(TAG, "$app calls getLegacyModulesList: $list , Caller: ${getCallingUid()}")
         return list
     }
 

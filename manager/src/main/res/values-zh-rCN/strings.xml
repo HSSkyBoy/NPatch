@@ -52,8 +52,8 @@
     <string name="patch_mode">修补模式</string>
     <string name="patch_local">本地模式</string>
     <string name="patch_local_desc">为未嵌入模块的应用程序打补丁。\nXposed 范围可动态更改，无需重新打补丁。\n打了本地补丁的应用程序只能在本地设备上运行。</string>
-    <string name="patch_integrated">集成模式</string>
-    <string name="patch_integrated_desc">修补 App 并内置模块。\n经修补的应用可以在没有管理器的情况下运行，但不能动态管理配置。\n以集成模式修补的应用可在未安装 NPatch 管理器的设备上运行。</string>
+    <string name="patch_integrated">注入模式</string>
+    <string name="patch_integrated_desc">修补 App 并注入模块。\n经修补的应用可以在没有管理器的情况下运行，但不能动态管理配置。\n以注入模式修补的应用可在未安装 NPatch 管理器的设备上运行。</string>
     <string name="patch_embed_modules">嵌入模块</string>
     <string name="patch_debuggable">可调试</string>
     <string name="patch_inject_mt_provider">注入文件提供器</string>

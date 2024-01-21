@@ -242,7 +242,7 @@ private fun SupportCard() {
                 stringResource(
                     R.string.home_view_source_code,
                     "<b><a href=\"https://github.com/HSSkyBoy/NPatch\">GitHub</a></b>",
-                    "<b><a href=\"https://t.me/NPatch_HS\">Telegram</a></b>"
+                    "<b><a href=\"https://t.me/NPatch\">Telegram</a></b>"
                 )
             )
         }
