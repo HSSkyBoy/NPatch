@@ -362,9 +362,7 @@ public class LSPatch {
             providerMap.put("permission","android.permission.MANAGE_DOCUMENTS");
             providerMap.put("exported","true");
             providerMap.put("authorities",packageName + ".MTDataFilesProvider");
-            providerMap.put("grantUriPermissions","true");
-
-            property.addProvider(providerMap,"android.content.action.DOCUMENTS_PROVIDER");
+            providerMap.put("grantUriPermissions","true"); 
 
         }
 
