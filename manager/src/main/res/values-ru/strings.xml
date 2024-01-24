@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Некоторые функции недоступны</string>
     <string name="home_api_version">Версия API</string>
-    <string name="home_lspatch_version">Версия NPatch</string>
+    <string name="home_lspatch_version">Версия LSPatch</string>
     <string name="home_framework_version">Версия фреймворк</string>
     <string name="home_system_version">Версия Android</string>
     <string name="home_device">Устройство</string>
     <string name="home_system_abi">Разрядность системы (ABI)</string>
     <string name="home_info_copied">Скопировано в буфер обмена</string>
     <string name="home_support">О приложении</string>
-    <string name="home_description">NPatch — это бесплатный фреймворк Xposed без полномочий root, основанный на ядре LSPosed</string>
+    <string name="home_description">LSPatch — это бесплатный фреймворк Xposed без полномочий root, основанный на ядре LSPosed</string>
     <string name="home_view_source_code"><![CDATA[Посмотреть исходный код на %1$s<br/>Присоединяйтесь к нашему %2$s каналу]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Управлять</string>
@@ -56,7 +56,6 @@
     <string name="patch_integrated_desc">Патч приложения со встроенными модулями.\nПатченное приложение может работать без менеджера, но не может управляться динамически.\nПортативные патченные приложения могут быть использованы на устройствах, у которых не установлен LSPatch менеджер</string>
     <string name="patch_embed_modules">Встроить модули</string>
     <string name="patch_debuggable">Отладка</string>
-    <string name="output log to media"> Выходной журнал в каталог media </ string>
     <string name="patch_sigbypass">Обход подписи</string>
     <string name="patch_sigbypasslv0">lv0: Выкл.</string>
     <string name="patch_sigbypasslv1">lv1: Обход PM</string>

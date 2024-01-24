@@ -5,14 +5,12 @@
     <string name="installing">安裝中</string>
     <string name="uninstall">卸载</string>
     <string name="uninstalling"></string>
-    <string name="shizuku_available">雫服務可用</string>
-    <string name="shizuku_unavailable">雫服務未連接</string>
+    <string name="shizuku_available">Shizuku 服務可用</string>
+    <string name="shizuku_unavailable">Shizuku 服務未連接</string>
     <string name="screen_logs">日誌</string>
     <!-- Home Screen -->
     <!-- Manage Screen -->
     <!-- New Patch Screen -->
-    <string name="patch_inject_mt_provider">注入文件提供器</string>
-    <string name="patch_inject_mt_provider_desc">注入文件提供器以在沒有root權限的情況下管理data目錄的文件(來自MT管理器)</string>
     <!-- Select Apps Screen -->
     <!-- Settings Screen -->
 </resources>

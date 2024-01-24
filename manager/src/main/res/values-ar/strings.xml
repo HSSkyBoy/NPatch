@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">بعض الوظائف غير متاحة</string>
     <string name="home_api_version">إصدار API</string>
-    <string name="home_NPatch_version">إصدار NPatch</string>
+    <string name="home_lspatch_version">إصدار LSPatch</string>
     <string name="home_framework_version">إصدار Framework</string>
     <string name="home_system_version">إصدار النظام</string>
     <string name="home_device">الجهاز</string>
     <string name="home_system_abi">نظام ABI</string>
     <string name="home_info_copied">تم النسخ إلى الحافظة</string>
     <string name="home_support">الدعـم</string>
-    <string name="home_description">NPatch هو إطار عمل Non-Root Xposed مجاني يعتمد على LSPosed core.</string>
+    <string name="home_description">LSPatch هو إطار عمل Non-Root Xposed مجاني يعتمد على LSPosed core.</string>
     <string name="home_view_source_code"><![CDATA[عرض كود المصدر على %1$s<br/>انضم إلى قناتنا %2$s]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">إدارة</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">محلي</string>
     <string name="patch_local_desc">قم بتصحيح تطبيق بدون وحدات مدمجة.\nيمكن تغيير نطاق Xpose ديناميكيًا دون إعادة التصحيح.\nلا يمكن تشغيل التطبيقات المحلية المصححة إلا على الجهاز المحلي.</string>
     <string name="patch_integrated">متكامل</string>
-    <string name="patch_integrated_desc">تعديل تطبيق بوحدات مدمجة.\nيمكن تشغيل التطبيق المعدل بدون المدير، لكن لا يمكن إدارته ديناميكيًا.\nيمكن استخدام التطبيقات المعدلة المدمجة على الأجهزة التي لم يتم تثبيت NPatch Manager عليها.</string>
+    <string name="patch_integrated_desc">تعديل تطبيق بوحدات مدمجة.\nيمكن تشغيل التطبيق المعدل بدون المدير، لكن لا يمكن إدارته ديناميكيًا.\nيمكن استخدام التطبيقات المعدلة المدمجة على الأجهزة التي لم يتم تثبيت LSPatch Manager عليها.</string>
     <string name="patch_embed_modules">الوحدات المُضْمَنة</string>
     <string name="patch_debuggable">قابل للتصحيح</string>
     <string name="patch_sigbypass">تجاوز التوقيع</string>

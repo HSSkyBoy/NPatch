@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Някои функции са недостъпни</string>
     <string name="home_api_version">Версия на API</string>
-    <string name="home_NPatch_version">Версия на NPatch</string>
+    <string name="home_lspatch_version">Версия на LSPatch</string>
     <string name="home_framework_version">Версия на рамката</string>
     <string name="home_system_version">Версия на системата</string>
     <string name="home_device">Устройство</string>
     <string name="home_system_abi">ABI на системата</string>
     <string name="home_info_copied">Копиране в клипборда</string>
     <string name="home_support">Подкрепа</string>
-    <string name="home_description">NPatch е безплатна некоренова рамка Xposed, базирана на ядрото LSPosed.</string>
+    <string name="home_description">LSPatch е безплатна некоренова рамка Xposed, базирана на ядрото LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Преглед на изходния код в %1$s<br/>Присъединете се към нашия %2$s канал]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Управление на</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Местни</string>
     <string name="patch_local_desc">Поправка на приложение без вградени модули.\nОбхватът на Xposed може да бъде променян динамично, без да се налага повторна кръпка.\nЛокално патчираните приложения могат да работят само на локалното устройство.</string>
     <string name="patch_integrated">Интегриран</string>
-    <string name="patch_integrated_desc">Пач на приложение с вградени модули.\nПриложението с корекция може да работи без мениджъра, но не може да се управлява динамично.\nИнтегрираните пакетирани приложения могат да се използват на устройства, които нямат инсталиран NPatch Manager.</string>
+    <string name="patch_integrated_desc">Пач на приложение с вградени модули.\nПриложението с корекция може да работи без мениджъра, но не може да се управлява динамично.\nИнтегрираните пакетирани приложения могат да се използват на устройства, които нямат инсталиран LSPatch Manager.</string>
     <string name="patch_embed_modules">Вграждане на модули</string>
     <string name="patch_debuggable">Отстраняване на грешки</string>
     <string name="patch_sigbypass">Подписване на байпас</string>

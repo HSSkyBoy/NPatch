@@ -42,11 +42,12 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LSPatch {
 
@@ -72,12 +73,6 @@ public class LSPatch {
     @Parameter(names = {"-f", "--force"}, description = "Force overwrite exists output file")
     private boolean forceOverwrite = false;
 
-    @Parameter(names = {"--provider"}, description = "Inject Provider to manager data files")
-    private boolean isInjectProvider = false;
-
-    @Parameter(names = {"--outputLog"}, description = "Output Log to Media")
-    private boolean outputLog = true;
-
     @Parameter(names = {"-d", "--debuggable"}, description = "Set app to be debuggable")
     private boolean debuggableFlag = false;
 
@@ -98,10 +93,6 @@ public class LSPatch {
 
     @Parameter(names = {"-m", "--embed"}, description = "Embed provided modules to apk")
     private List<String> modules = new ArrayList<>();
-
-
-
-    private String packageName;
 
     private static final String ANDROID_MANIFEST_XML = "AndroidManifest.xml";
     private static final HashSet<String> ARCHES = new HashSet<>(Arrays.asList(
@@ -164,7 +155,7 @@ public class LSPatch {
             outputDir.mkdirs();
 
             File outputFile = new File(outputDir, String.format(
-                    Locale.getDefault(), "%s-%d-opatched.apk",
+                    Locale.getDefault(), "%s-%d-lspatched.apk",
                     FilenameUtils.getBaseName(apkFileName),
                     LSPConfig.instance.VERSION_CODE)
             ).getAbsoluteFile();
@@ -238,14 +229,25 @@ public class LSPatch {
                     throw new PatchError("Failed to parse AndroidManifest.xml");
                 appComponentFactory = pair.appComponentFactory;
                 minSdkVersion = pair.minSdkVersion;
-                packageName = pair.packageName;
                 logger.d("original appComponentFactory class: " + appComponentFactory);
                 logger.d("original minSdkVersion: " + minSdkVersion);
             }
 
+            final boolean skipSplit = apkPaths.size() > 1 && srcApkFile.getName().startsWith("split_") && appComponentFactory == null;
+            if (skipSplit) {
+                logger.i("Packing split apk...");
+                for (StoredEntry entry : srcZFile.entries()) {
+                    String name = entry.getCentralDirectoryHeader().getName();
+                    if (dstZFile.get(name) != null) continue;
+                    if (name.startsWith("META-INF") && (name.endsWith(".SF") || name.endsWith(".MF") || name.endsWith(".RSA"))) continue;
+                    srcZFile.addFileLink(name, name);
+                }
+                return;
+            }
+
             logger.i("Patching apk...");
             // modify manifest
-            final var config = new PatchConfig(useManager, debuggableFlag, overrideVersionCode, sigbypassLevel, originalSignature, appComponentFactory,isInjectProvider,outputLog);
+            final var config = new PatchConfig(useManager, debuggableFlag, overrideVersionCode, sigbypassLevel, originalSignature, appComponentFactory);
             final var configBytes = new Gson().toJson(config).getBytes(StandardCharsets.UTF_8);
             final var metadata = Base64.getEncoder().encodeToString(configBytes);
             try (var is = new ByteArrayInputStream(modifyManifestFile(manifestEntry.open(), metadata, minSdkVersion))) {
@@ -264,33 +266,22 @@ public class LSPatch {
 
             logger.i("Adding metaloader dex...");
             try (var is = getClass().getClassLoader().getResourceAsStream(Constants.META_LOADER_DEX_ASSET_PATH)) {
-                dstZFile.add("classes.dex", is);
+                var dexCount = srcZFile.entries().stream().filter(entry -> {
+                    var name = entry.getCentralDirectoryHeader().getName();
+                    return name.startsWith("classes") && name.endsWith(".dex");
+                }).collect(Collectors.toList()).size() + 1;
+                dstZFile.add("classes" + dexCount + ".dex", is);
             } catch (Throwable e) {
                 throw new PatchError("Error when adding dex", e);
             }
 
-            if (isInjectProvider){
-                try (var is = getClass().getClassLoader().getResourceAsStream("assets/provider.dex")) {
-                    dstZFile.add("assets/lspatch/provider.dex", is);
-                } catch (Throwable e) {
-                    throw new PatchError("Error when adding dex", e);
-                }
-            }
-
             if (!useManager) {
-                logger.i("Embedding modules...");
-                embedModules(dstZFile);
-            }
-
-            {
-
                 logger.i("Adding loader dex...");
                 try (var is = getClass().getClassLoader().getResourceAsStream(LOADER_DEX_ASSET_PATH)) {
                     dstZFile.add(LOADER_DEX_ASSET_PATH, is);
                 } catch (Throwable e) {
                     throw new PatchError("Error when adding assets", e);
                 }
-
 
                 logger.i("Adding native lib...");
                 // copy so and dex files into the unzipped apk
@@ -305,6 +296,9 @@ public class LSPatch {
                     }
                     logger.d("added " + entryName);
                 }
+
+                logger.i("Embedding modules...");
+                embedModules(dstZFile);
             }
 
             // create zip link
@@ -312,7 +306,6 @@ public class LSPatch {
 
             for (StoredEntry entry : srcZFile.entries()) {
                 String name = entry.getCentralDirectoryHeader().getName();
-                if (name.startsWith("classes") && name.endsWith(".dex")) continue;
                 if (dstZFile.get(name) != null) continue;
                 if (name.equals("AndroidManifest.xml")) continue;
                 if (name.startsWith("META-INF") && (name.endsWith(".SF") || name.endsWith(".MF") || name.endsWith(".RSA"))) continue;
@@ -356,15 +349,6 @@ public class LSPatch {
         // TODO: replace query_all with queries -> manager
         if (useManager)
             property.addUsesPermission("android.permission.QUERY_ALL_PACKAGES");
-        if (isInjectProvider){
-            HashMap<String,String> providerMap = new HashMap<>();
-            providerMap.put("name","bin.mt.file.content.MTDataFilesProvider");
-            providerMap.put("permission","android.permission.MANAGE_DOCUMENTS");
-            providerMap.put("exported","true");
-            providerMap.put("authorities",packageName + ".MTDataFilesProvider");
-            providerMap.put("grantUriPermissions","true"); 
-
-        }
 
         var os = new ByteArrayOutputStream();
         (new ManifestEditor(is, os, property)).processManifest();

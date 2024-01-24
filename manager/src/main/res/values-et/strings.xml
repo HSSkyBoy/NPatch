@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Mõned funktsioonid pole saadaval</string>
     <string name="home_api_version">API versioon</string>
-    <string name="home_NPatch_version">NPatchi versioon</string>
+    <string name="home_lspatch_version">LSPatchi versioon</string>
     <string name="home_framework_version">Raamversioon</string>
     <string name="home_system_version">Süsteemi versioon</string>
     <string name="home_device">Seade</string>
     <string name="home_system_abi">Süsteemi ABI</string>
     <string name="home_info_copied">Kopeeriti lõikelauale</string>
     <string name="home_support">Toetus</string>
-    <string name="home_description">NPatch on tasuta mittejuur-Xposedi raamistik, mis põhineb LSPosedi tuumal.</string>
+    <string name="home_description">LSPatch on tasuta mittejuur-Xposedi raamistik, mis põhineb LSPosedi tuumal.</string>
     <string name="home_view_source_code"><![CDATA[Vaadake lähtekoodi aadressil %1$s<br/>Liituge meie %2$s kanaliga]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Halda</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Kohalik</string>
     <string name="patch_local_desc">Paigaldage rakendus ilma mooduliteta sisseehitatud.\nXposed ulatust saab dünaamiliselt muuta ilma uuesti paranduseta.\nKohalikud parandatud rakendused saavad töötada ainult kohalikus seadmes.</string>
     <string name="patch_integrated">Integreeritud</string>
-    <string name="patch_integrated_desc">Paigutage manustatud moodulitega rakendust.\nPaigutatud rakendus võib töötada ilma haldurita, kuid seda ei saa dünaamiliselt hallata.\nIntegreeritud paigatud rakendusi saab kasutada seadmetes, kuhu pole installitud NPatch Manager.</string>
+    <string name="patch_integrated_desc">Paigutage manustatud moodulitega rakendust.\nPaigutatud rakendus võib töötada ilma haldurita, kuid seda ei saa dünaamiliselt hallata.\nIntegreeritud paigatud rakendusi saab kasutada seadmetes, kuhu pole installitud LSPatch Manager.</string>
     <string name="patch_embed_modules">Manustage moodulid</string>
     <string name="patch_debuggable">Silutav</string>
     <string name="patch_sigbypass">Allkirjast möödasõit</string>

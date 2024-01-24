@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Algunas funciones no disponibles</string>
     <string name="home_api_version">Versión API</string>
-    <string name="home_NPatch_version">Versión de NPatch</string>
+    <string name="home_lspatch_version">Versión de LSPatch</string>
     <string name="home_framework_version">Versión del marco</string>
     <string name="home_system_version">Versión del sistema</string>
     <string name="home_device">Dispositivo</string>
     <string name="home_system_abi">Sistema ABI</string>
     <string name="home_info_copied">Copiado al portapapeles</string>
     <string name="home_support">Apoyo</string>
-    <string name="home_description">NPatch es un marco Xposed no root gratuito basado en el núcleo LSPosed.</string>
+    <string name="home_description">LSPatch es un marco Xposed no root gratuito basado en el núcleo LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Ver código fuente en %1$s<br/>Únete a nuestro canal %2$s]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Gestionar</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Local</string>
     <string name="patch_local_desc">Parche de una aplicación sin módulos incrustados.\nEl ámbito de Xposed puede cambiarse dinámicamente sin necesidad de volver a parchear.\nLas aplicaciones locales parcheadas solo pueden ejecutarse en el dispositivo local.</string>
     <string name="patch_integrated">Integrado</string>
-    <string name="patch_integrated_desc">Parchea una app con módulos incrustados.\nLa aplicación parcheada puede ejecutarse sin el gestor, pero no puede gestionarse dinámicamente.\nLas apps parcheadas integradas pueden utilizarse en dispositivos que no tengan instalado NPatch Manager.</string>
+    <string name="patch_integrated_desc">Parchea una app con módulos incrustados.\nLa aplicación parcheada puede ejecutarse sin el gestor, pero no puede gestionarse dinámicamente.\nLas apps parcheadas integradas pueden utilizarse en dispositivos que no tengan instalado LSPatch Manager.</string>
     <string name="patch_embed_modules">Módulos incrustados</string>
     <string name="patch_debuggable">depurable</string>
     <string name="patch_sigbypass">Omisión de firma</string>

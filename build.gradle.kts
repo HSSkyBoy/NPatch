@@ -18,7 +18,6 @@ buildscript {
     }
     dependencies {
         classpath("org.eclipse.jgit:org.eclipse.jgit:6.3.0.202209071007-r")
-        classpath(kotlin("gradle-plugin", version = "1.8.21"))
     }
 }
 
@@ -44,7 +43,7 @@ val (coreCommitCount, coreLatestTag) = FileRepositoryBuilder().setGitDir(rootPro
     }.getOrNull() ?: (1 to "1.0")
 
 // sync from https://github.com/LSPosed/LSPosed/blob/master/build.gradle.kts
-val defaultManagerPackageName by extra("org.lsposed.opatch")
+val defaultManagerPackageName by extra("org.lsposed.lspatch")
 val apiCode by extra(93)
 val verCode by extra(10)
 val verName by extra("0.6.1")

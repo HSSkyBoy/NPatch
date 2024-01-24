@@ -3,7 +3,6 @@ package org.lsposed.lspatch.loader;
 import android.app.ActivityThread;
 import android.app.LoadedApk;
 import android.content.res.XResources;
-import android.util.Log;
 
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedInit;

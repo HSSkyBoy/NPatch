@@ -51,7 +51,6 @@ namespace lspd {
                 { "org.lsposed.lspd.core.", "org.lsposed.lspd.core."},
                 { "org.lsposed.lspd.nativebridge.", "org.lsposed.lspd.nativebridge."},
                 { "org.lsposed.lspd.service.", "org.lsposed.lspd.service."},
-                { "Genshin.Impact.", "Genshin.Impact."},
         };
     };
 }

@@ -7,13 +7,10 @@ import kotlinx.coroutines.withContext
 import org.lsposed.lspatch.config.Configs
 import org.lsposed.lspatch.config.MyKeyStore
 import org.lsposed.lspatch.share.Constants
-import org.lsposed.lspatch.share.LSPConfig
 import org.lsposed.lspatch.share.PatchConfig
 import org.lsposed.patch.LSPatch
 import org.lsposed.patch.util.Logger
-import java.io.File
 import java.io.IOException
-import java.util.Locale
 
 object Patcher {
 
@@ -23,17 +20,8 @@ object Patcher {
         private val embeddedModules: List<String>?
     ) {
         fun toStringArray(): Array<String> {
-            var mReadPath = JUtils.processApkPath(lspApp,apkPaths)
-            lspApp.targetApkPath = File(
-                lspApp.tmpApkDir.absolutePath, String.format(
-                    Locale.getDefault(), "%s-%d-opatched.apk",
-                    File(mReadPath[0]).nameWithoutExtension,
-                    LSPConfig.instance.VERSION_CODE
-                )
-            ).absoluteFile
-
             return buildList {
-                addAll(mReadPath)
+                addAll(apkPaths)
                 add("-o"); add(lspApp.tmpApkDir.absolutePath)
                 if (config.debuggable) add("-d")
                 add("-l"); add(config.sigBypassLevel.toString())
@@ -43,7 +31,6 @@ object Patcher {
                 embeddedModules?.forEach {
                     add("-m"); add(it)
                 }
-                if (config.injectProvider) add("--provider")
                 if (!MyKeyStore.useDefault) {
                     addAll(arrayOf("-k", MyKeyStore.file.path, Configs.keyStorePassword, Configs.keyStoreAlias, Configs.keyStoreAliasPassword))
                 }
