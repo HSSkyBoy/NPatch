@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Některé funkce nejsou k dispozici</string>
     <string name="home_api_version">Verze API</string>
-    <string name="home_lspatch_version">Verze LSPatch</string>
+    <string name="home_NPatch_version">Verze NPatch</string>
     <string name="home_framework_version">Verze rámce</string>
     <string name="home_system_version">Verze systému</string>
     <string name="home_device">přístroj</string>
     <string name="home_system_abi">Systém ABI</string>
     <string name="home_info_copied">Zkopírováno do schránky</string>
     <string name="home_support">Podpěra, podpora</string>
-    <string name="home_description">LSPatch je bezplatný non-root Xposed framework založený na jádru LSPosed.</string>
+    <string name="home_description">NPatch je bezplatný non-root Xposed framework založený na jádru LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Zobrazit zdrojový kód na %1$s<br/>Připojte se k našemu %2$s kanálu]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Správa</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Místní</string>
     <string name="patch_local_desc">Oprava aplikace bez vložených modulů.\nRozsah Xposed lze dynamicky měnit bez opětovného záplatování.\nMístní záplatované aplikace lze spustit pouze na místním zařízení.</string>
     <string name="patch_integrated">Integrovaný</string>
-    <string name="patch_integrated_desc">Opravte aplikaci s vestavěnými moduly.\nOpravená aplikace může běžet bez správce, ale nelze ji spravovat dynamicky.\nIntegrované opravené aplikace lze používat na zařízeních, která nemají nainstalovaný LSPatch Manager.</string>
+    <string name="patch_integrated_desc">Opravte aplikaci s vestavěnými moduly.\nOpravená aplikace může běžet bez správce, ale nelze ji spravovat dynamicky.\nIntegrované opravené aplikace lze používat na zařízeních, která nemají nainstalovaný NPatch Manager.</string>
     <string name="patch_embed_modules">Vložit moduly</string>
     <string name="patch_debuggable">Laditelné</string>
     <string name="patch_sigbypass">Přemostění podpisu</string>

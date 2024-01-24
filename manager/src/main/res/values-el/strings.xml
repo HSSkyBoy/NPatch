@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Ορισμένες λειτουργίες δεν είναι διαθέσιμες</string>
     <string name="home_api_version">Έκδοση API</string>
-    <string name="home_lspatch_version">Έκδοση LSPatch</string>
+    <string name="home_NPatch_version">Έκδοση NPatch</string>
     <string name="home_framework_version">Έκδοση πλαισίου</string>
     <string name="home_system_version">Έκδοση συστήματος</string>
     <string name="home_device">Συσκευή</string>
     <string name="home_system_abi">Σύστημα ABI</string>
     <string name="home_info_copied">Αντιγράφηκε στο πρόχειρο</string>
     <string name="home_support">Υποστήριξη</string>
-    <string name="home_description">Το LSPatch είναι ένα δωρεάν πλαίσιο Xposed χωρίς ρίζα που βασίζεται στον πυρήνα LSPosed.</string>
+    <string name="home_description">Το NPatch είναι ένα δωρεάν πλαίσιο Xposed χωρίς ρίζα που βασίζεται στον πυρήνα LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Δείτε τον πηγαίο κώδικα στο %1$s<br/>Εγγραφείτε στο %2$s κανάλι μας]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Διαχείριση</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Τοπικός</string>
     <string name="patch_local_desc">Επιδιόρθωση μιας εφαρμογής χωρίς ενσωματωμένες ενότητες.\nΤο πεδίο εφαρμογής του Xposed μπορεί να αλλάξει δυναμικά χωρίς επαναπατρισμό.\nΟι τοπικές επιδιορθωμένες εφαρμογές μπορούν να εκτελούνται μόνο στην τοπική συσκευή.</string>
     <string name="patch_integrated">Ολοκληρωμένο</string>
-    <string name="patch_integrated_desc">Επιδιορθώστε μια εφαρμογή με ενσωματωμένες λειτουργικές μονάδες.\nΗ επιδιορθωμένη εφαρμογή μπορεί να εκτελεστεί χωρίς τον διαχειριστή, αλλά δεν είναι δυνατή η δυναμική διαχείριση της.\nΟι ενσωματωμένες ενημερωμένες εφαρμογές μπορούν να χρησιμοποιηθούν σε συσκευές που δεν έχουν εγκατεστημένο το LSPatch Manager.</string>
+    <string name="patch_integrated_desc">Επιδιορθώστε μια εφαρμογή με ενσωματωμένες λειτουργικές μονάδες.\nΗ επιδιορθωμένη εφαρμογή μπορεί να εκτελεστεί χωρίς τον διαχειριστή, αλλά δεν είναι δυνατή η δυναμική διαχείριση της.\nΟι ενσωματωμένες ενημερωμένες εφαρμογές μπορούν να χρησιμοποιηθούν σε συσκευές που δεν έχουν εγκατεστημένο το NPatch Manager.</string>
     <string name="patch_embed_modules">Ενσωμάτωση λειτουργικών μονάδων</string>
     <string name="patch_debuggable">Δυνατότητα εντοπισμού σφαλμάτων</string>
     <string name="patch_sigbypass">Παράκαμψη υπογραφής</string>

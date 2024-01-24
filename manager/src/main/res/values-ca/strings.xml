@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Algunes funcions no estan disponibles</string>
     <string name="home_api_version">Versió de l\'API</string>
-    <string name="home_lspatch_version">Versió LSPatch</string>
+    <string name="home_NPatch_version">Versió NPatch</string>
     <string name="home_framework_version">Versió del marc</string>
     <string name="home_system_version">Versió del sistema</string>
     <string name="home_device">Dispositiu</string>
     <string name="home_system_abi">Sistema ABI</string>
     <string name="home_info_copied">S\'ha copiat al porta-retalls</string>
     <string name="home_support">Suport</string>
-    <string name="home_description">LSPatch és un marc Xposed gratuït no root basat en el nucli LSPosed.</string>
+    <string name="home_description">NPatch és un marc Xposed gratuït no root basat en el nucli LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Veure el codi font a %1$s<br/>Uneix-te al nostre canal %2$s]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Gestionar</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Local</string>
     <string name="patch_local_desc">Apliqueu una aplicació sense mòduls incrustats.\nL\'àmbit Xposed es pot canviar dinàmicament sense tornar a aplicar el pedaç.\nLes aplicacions localitzades només es poden executar al dispositiu local.</string>
     <string name="patch_integrated">Integrat</string>
-    <string name="patch_integrated_desc">Apliqueu una aplicació amb mòduls incrustats.\nL\'aplicació pegada es pot executar sense el gestor, però no es pot gestionar de manera dinàmica.\nLes aplicacions amb pedaços integrades es poden utilitzar en dispositius que no tinguin LSPatch Manager instal·lat.</string>
+    <string name="patch_integrated_desc">Apliqueu una aplicació amb mòduls incrustats.\nL\'aplicació pegada es pot executar sense el gestor, però no es pot gestionar de manera dinàmica.\nLes aplicacions amb pedaços integrades es poden utilitzar en dispositius que no tinguin NPatch Manager instal·lat.</string>
     <string name="patch_embed_modules">Incrustar mòduls</string>
     <string name="patch_debuggable">Depurable</string>
     <string name="patch_sigbypass">Bypass de signatura</string>

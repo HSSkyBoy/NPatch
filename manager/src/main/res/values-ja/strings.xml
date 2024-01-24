@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">一部の機能が使用できません</string>
     <string name="home_api_version">APIのバージョン</string>
-    <string name="home_lspatch_version">LSPatchのバージョン</string>
+    <string name="home_NPatch_version">NPatchのバージョン</string>
     <string name="home_framework_version">フレームワークのバージョン</string>
     <string name="home_system_version">システムのバージョン</string>
     <string name="home_device">デバイス</string>
     <string name="home_system_abi">システムABI</string>
     <string name="home_info_copied">クリップボードにコピーしました</string>
     <string name="home_support">サポート</string>
-    <string name="home_description">LSPatchは、LSPosedコアに基づく無料の非root環境向けXposedフレームワークです。</string>
+    <string name="home_description">NPatchは、LSPosedコアに基づく無料の非root環境向けXposedフレームワークです。</string>
     <string name="home_view_source_code"><![CDATA[%1$sでソースコードを見る<br/>%2$sチャンネルに参加する]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">管理</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">ローカル</string>
     <string name="patch_local_desc">モジュールを埋め込んでいないアプリにパッチを当てる。\nXposedのスコープは、再パッチなしで動的に変更できます。\nローカルでパッチを適用したアプリは、ローカルデバイスでのみ実行できます。</string>
     <string name="patch_integrated">統合</string>
-    <string name="patch_integrated_desc">モジュールが埋め込まれたアプリにパッチを適用します。\nパッチ適用されたアプリはマネージャーなしで実行できますが、動的に管理することはできません。\n統合されたパッチ適用済みアプリは、LSPatch Manager がインストールされていないデバイスでも使用できます。</string>
+    <string name="patch_integrated_desc">モジュールが埋め込まれたアプリにパッチを適用します。\nパッチ適用されたアプリはマネージャーなしで実行できますが、動的に管理することはできません。\n統合されたパッチ適用済みアプリは、NPatch Manager がインストールされていないデバイスでも使用できます。</string>
     <string name="patch_embed_modules">モジュールを埋め込む</string>
     <string name="patch_debuggable">デバッグを有効化</string>
     <string name="patch_sigbypass">署名のバイパス</string>
