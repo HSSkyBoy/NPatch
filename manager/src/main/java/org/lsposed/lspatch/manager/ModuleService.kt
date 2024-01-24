@@ -9,13 +9,13 @@ import android.util.Log
 class ModuleService : Service() {
 
     companion object {
-        private const val TAG = "NPatchModuleService"
+        private const val TAG = "ModuleService"
     }
 
     override fun onBind(intent: Intent): IBinder? {
         val packageName = intent.getStringExtra("packageName") ?: return null
         // TODO: Authentication
-        Log.i(TAG, "$packageName requests binder:")
+        Log.i(TAG, "$packageName requests binder")
         return ManagerService.asBinder()
     }
 }
