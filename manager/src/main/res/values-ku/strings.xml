@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Hin fonksiyon ne berdest in</string>
     <string name="home_api_version">Guhertoya API</string>
-    <string name="home_NPatch_version">Guhertoya NPatch</string>
+    <string name="home_lspatch_version">Guhertoya LSPatch</string>
     <string name="home_framework_version">Guhertoya Çarçoveyê</string>
     <string name="home_system_version">Versiyon ji System</string>
     <string name="home_device">Sazî</string>
     <string name="home_system_abi">Pergala ABI</string>
     <string name="home_info_copied">Li clipboardê hate kopî kirin</string>
     <string name="home_support">Alîkarî</string>
-    <string name="home_description">NPatch çarçoveyek Xposed-a ne-root-a belaş e ku li ser bingeha LSPosed-ê ye.</string>
+    <string name="home_description">LSPatch çarçoveyek Xposed-a ne-root-a belaş e ku li ser bingeha LSPosed-ê ye.</string>
     <string name="home_view_source_code"><![CDATA[Koda çavkaniyê li %1$s<br/>bibînin Tevlî %2$s kanala me bibin]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Rêvebirin</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Herêmî</string>
     <string name="patch_local_desc">Serlêdanek bêyî modulên pêvekirî paqij bikin.\nQada Xposed dikare bi dînamîk bêyî nûvekirin were guheztin.\nSerlêdanên paçkirî yên herêmî tenê dikarin li ser cîhaza herêmî bixebitin.</string>
     <string name="patch_integrated">Integrated</string>
-    <string name="patch_integrated_desc">Serlêdanek bi modulên pêvekirî veqetînin.\nSerlêdana paçkirî dikare bêyî rêveberê bixebite, lê bi dînamîk nayê rêvebirin.\nSerlêdanên pejirandî yên yekbûyî dikarin li ser cîhazên ku Rêvebirê NPatch-ê sazkirî ne têne bikar anîn.</string>
+    <string name="patch_integrated_desc">Serlêdanek bi modulên pêvekirî veqetînin.\nSerlêdana paçkirî dikare bêyî rêveberê bixebite, lê bi dînamîk nayê rêvebirin.\nSerlêdanên pejirandî yên yekbûyî dikarin li ser cîhazên ku Rêvebirê LSPatch-ê sazkirî ne têne bikar anîn.</string>
     <string name="patch_embed_modules">Modulên tevde bikin</string>
     <string name="patch_debuggable">Debuggable</string>
     <string name="patch_sigbypass">Îmzeya bipass</string>

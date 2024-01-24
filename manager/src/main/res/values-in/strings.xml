@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Beberapa fungsi tidak tersedia</string>
     <string name="home_api_version">Versi API</string>
-    <string name="home_NPatch_version">Versi NPatch</string>
+    <string name="home_lspatch_version">Versi LSPatch</string>
     <string name="home_framework_version">Versi Kerangka</string>
     <string name="home_system_version">Versi Sistem</string>
     <string name="home_device">Perangkat</string>
     <string name="home_system_abi">Sistem ABI</string>
     <string name="home_info_copied">Disalin ke papan klip</string>
     <string name="home_support">Mendukung</string>
-    <string name="home_description">NPatch adalah kerangka kerja Xposed non-root gratis berdasarkan inti LSPosed.</string>
+    <string name="home_description">LSPatch adalah kerangka kerja Xposed non-root gratis berdasarkan inti LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Lihat kode sumber di %1$s<br/>Bergabunglah dengan %2$s saluran kami]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Kelola</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Lokal</string>
     <string name="patch_local_desc">Menambal aplikasi tanpa modul yang tertanam.\nCakupan Xposed dapat diubah secara dinamis tanpa menambal ulang.\nAplikasi yang ditambal lokal hanya dapat berjalan di perangkat lokal.</string>
     <string name="patch_integrated">Terintegrasi</string>
-    <string name="patch_integrated_desc">Patch aplikasi dengan modul yang disematkan.\nAplikasi yang di-patch dapat berjalan tanpa manajer, tetapi tidak dapat dikelola secara dinamis.\nAplikasi yang di-patch terintegrasi dapat digunakan pada perangkat yang tidak memasang NPatch Manager.</string>
+    <string name="patch_integrated_desc">Patch aplikasi dengan modul yang disematkan.\nAplikasi yang di-patch dapat berjalan tanpa manajer, tetapi tidak dapat dikelola secara dinamis.\nAplikasi yang di-patch terintegrasi dapat digunakan pada perangkat yang tidak memasang LSPatch Manager.</string>
     <string name="patch_embed_modules">Sematkan modul</string>
     <string name="patch_debuggable">Dapat di-debug</string>
     <string name="patch_sigbypass">Bypass tanda tangan</string>

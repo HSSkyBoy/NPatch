@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Neke funkcije nisu dostupne</string>
     <string name="home_api_version">API verzija</string>
-    <string name="home_NPatch_version">NPatch verzija</string>
+    <string name="home_lspatch_version">LSPatch verzija</string>
     <string name="home_framework_version">Framework verzija</string>
     <string name="home_system_version">Verzija sustava</string>
     <string name="home_device">Uređaj</string>
     <string name="home_system_abi">Sustav ABI</string>
     <string name="home_info_copied">Kopirano u međuspremnik</string>
     <string name="home_support">Podrška</string>
-    <string name="home_description">NPatch je besplatni Xposed framework bez root-a temeljen na LSPosed jezgri.</string>
+    <string name="home_description">LSPatch je besplatni Xposed framework bez root-a temeljen na LSPosed jezgri.</string>
     <string name="home_view_source_code"><![CDATA[Pogledajte izvorni kod na %1$s<br/>Pridružite se našem %2$s kanalu]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Upravljanje</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Lokalni</string>
     <string name="patch_local_desc">Zakrpite aplikaciju bez ugrađenih modula.\nXposed opseg može se mijenjati dinamički bez ponovnog zakrpa.\nLokalno zakrpane aplikacije mogu se izvoditi samo na lokalnom uređaju.</string>
     <string name="patch_integrated">Integriran</string>
-    <string name="patch_integrated_desc">Zakrpite aplikaciju s ugrađenim modulima.\nZakrpana aplikacija može raditi bez upravitelja, ali se njome ne može upravljati dinamički.\nIntegrirane zakrpane aplikacije mogu se koristiti na uređajima koji nemaju instaliran NPatch Manager.</string>
+    <string name="patch_integrated_desc">Zakrpite aplikaciju s ugrađenim modulima.\nZakrpana aplikacija može raditi bez upravitelja, ali se njome ne može upravljati dinamički.\nIntegrirane zakrpane aplikacije mogu se koristiti na uređajima koji nemaju instaliran LSPatch Manager.</string>
     <string name="patch_embed_modules">Ugradite module</string>
     <string name="patch_debuggable">Mogućnost otklanjanja pogrešaka</string>
     <string name="patch_sigbypass">Premosnica potpisa</string>

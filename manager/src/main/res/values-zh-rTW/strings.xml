@@ -8,8 +8,8 @@
     <string name="copy_error">複製錯誤</string>
     <string name="apps">應用程式</string>
     <string name="modules">模組</string>
-    <string name="shizuku_available">可以使用雫</string>
-    <string name="shizuku_unavailable">未連線至雫</string>
+    <string name="shizuku_available">Shizuku 服務可用</string>
+    <string name="shizuku_unavailable">Shizuku 服務未連線</string>
     <string name="screen_repo">倉庫</string>
     <string name="screen_logs">日誌</string>
     <string name="off">關閉</string>
@@ -17,7 +17,7 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">部分功能不可用</string>
     <string name="home_api_version">API 版本</string>
-    <string name="home_NPatch_version">NPatch 版本</string>
+    <string name="home_lspatch_version">NPatch 版本</string>
     <string name="home_framework_version">框架版本</string>
     <string name="home_system_version">系統版本</string>
     <string name="home_device">裝置</string>
@@ -53,13 +53,11 @@
     <string name="patch_local">本機</string>
     <string name="patch_local_desc">修補未嵌入模組的應用程式。\nXpose 範圍可以動態更改，無需重新修補。\n本地修補的應用程式只能在本機裝置上運作。</string>
     <string name="patch_integrated">集成模式</string>
-    <string name="patch_integrated_desc">打包內建模組的應用程式。\n打包後的程式，可以在沒有管理器的情況下執行，但無法動態管理啟用的模組。\n以集成模式打包的應用程式，可以在沒有安裝 NPatch Manager 的裝置上使用。</string>
+    <string name="patch_integrated_desc">打包內建模組的應用程式。\n打包後的程式，可以在沒有管理器的情況下執行，但無法動態管理啟用的模組。\n以集成模式打包的應用程式，可以在沒有安裝 LSPatch Manager 的裝置上使用。</string>
     <string name="patch_embed_modules">內建模組</string>
     <string name="patch_debuggable">可偵錯</string>
     <string name="patch_inject_mt_provider">注入檔案提供器</string>
     <string name="patch_inject_mt_provider_desc">注入檔案提供器以在沒有root許可權的情況下管理data目錄的檔案(來自MT管理器)</string>
-    <string name="output_log_to_media">輸出日誌到media目錄</string>
-    <string name="output_log_to_media_desc">將模組的xposed日誌到被注入的App的media目錄</string>
     <string name="patch_sigbypass">破解簽名驗證</string>
     <string name="patch_sigbypasslv0">lv0: 關閉</string>
     <string name="patch_sigbypasslv1">lv1: 繞過 PM</string>

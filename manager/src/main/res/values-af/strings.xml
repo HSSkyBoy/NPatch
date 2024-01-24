@@ -17,7 +17,7 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Sommige funksies nie beskikbaar nie</string>
     <string name="home_api_version">API weergawe</string>
-    <string name="home_NPatch_version">NPatch weergawe</string>
+    <string name="home_lspatch_version">NPatch weergawe</string>
     <string name="home_framework_version">Raamwerk weergawe</string>
     <string name="home_system_version">Stelsel weergawe</string>
     <string name="home_device">Toestel</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Plaaslik</string>
     <string name="patch_local_desc">Maak \'n toepassing sonder modules ingebed.\nXposed omvang kan dinamies verander word sonder her-patch.\nPlaaslike gelapte programme kan slegs op die plaaslike toestel loop.</string>
     <string name="patch_integrated">Geïntegreerde</string>
-    <string name="patch_integrated_desc">Patcher une application avec des modules intégrés.\nL\'application corrigée peut fonctionner sans le gestionnaire mais ne peut pas être gérée dynamiquement.\nLes applications patchées intégrées peuvent être utilisées sur des appareils sur lesquels NPatch Manager n\'est pas installé.</string>
+    <string name="patch_integrated_desc">Patcher une application avec des modules intégrés.\nL\'application corrigée peut fonctionner sans le gestionnaire mais ne peut pas être gérée dynamiquement.\nLes applications patchées intégrées peuvent être utilisées sur des appareils sur lesquels LSPatch Manager n\'est pas installé.</string>
     <string name="patch_embed_modules">Sluit modules in</string>
     <string name="patch_debuggable">Ontfoutbaar</string>
     <string name="patch_sigbypass">Handtekening omseil</string>

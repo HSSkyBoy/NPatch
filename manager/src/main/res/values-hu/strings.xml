@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Néhány funkció nem elérhető</string>
     <string name="home_api_version">API verzió</string>
-    <string name="home_NPatch_version">NPatch verzió</string>
+    <string name="home_lspatch_version">LSPatch verzió</string>
     <string name="home_framework_version">Keretrendszer verziója</string>
     <string name="home_system_version">Rendszer verzió</string>
     <string name="home_device">Eszköz</string>
     <string name="home_system_abi">Rendszer ABI</string>
     <string name="home_info_copied">Vágólapra másolva</string>
     <string name="home_support">Támogatás</string>
-    <string name="home_description">Az NPatch egy ingyenes, nem root Xposed keretrendszer, amely az LSPosed magon alapul.</string>
+    <string name="home_description">Az LSPatch egy ingyenes, nem root Xposed keretrendszer, amely az LSPosed magon alapul.</string>
     <string name="home_view_source_code"><![CDATA[Forráskód megtekintése itt: %1$s<br/>Csatlakozzon %2$s csatornánkhoz]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Kezelés</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Helyi</string>
     <string name="patch_local_desc">Beágyazott modulok nélküli alkalmazás foltozása.\nAz Xposed hatókör dinamikusan megváltoztatható újrapatchelés nélkül.\nA helyi javított alkalmazások csak a helyi eszközön futhatnak.</string>
     <string name="patch_integrated">Integrált</string>
-    <string name="patch_integrated_desc">Patcheljen egy alkalmazást beágyazott modulokkal.\nA patchelt alkalmazás futhat a Manager nélkül, de nem kezelhető dinamikusan.\nAz integrált\nhordozható, patchelt alkalmazások olyan eszközökön használhatók, amelyeken nincs telepítve az NPatch Manager.</string>
+    <string name="patch_integrated_desc">Patcheljen egy alkalmazást beágyazott modulokkal.\nA patchelt alkalmazás futhat a Manager nélkül, de nem kezelhető dinamikusan.\nAz integrált\nhordozható, patchelt alkalmazások olyan eszközökön használhatók, amelyeken nincs telepítve az LSPatch Manager.</string>
     <string name="patch_embed_modules">Modulok beágyazása</string>
     <string name="patch_debuggable">Hibakeresés</string>
     <string name="patch_sigbypass">Aláírás megkerülése</string>

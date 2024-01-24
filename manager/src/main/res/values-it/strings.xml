@@ -17,14 +17,14 @@
     <!-- Home Screen -->
     <string name="home_shizuku_warning">Alcune funzioni non sono disponibili</string>
     <string name="home_api_version">Versione API</string>
-    <string name="home_NPatch_version">Versione NPatch</string>
+    <string name="home_lspatch_version">Versione LSPatch</string>
     <string name="home_framework_version">Versione del framework</string>
     <string name="home_system_version">Versione del sistema</string>
     <string name="home_device">Dispositivo</string>
     <string name="home_system_abi">ABI del sistema</string>
     <string name="home_info_copied">Copiato negli appunti</string>
     <string name="home_support">Supporto</string>
-    <string name="home_description">NPatch è un framework Xposed non-root gratuito basato sul core LSPosed.</string>
+    <string name="home_description">LSPatch è un framework Xposed non-root gratuito basato sul core LSPosed.</string>
     <string name="home_view_source_code"><![CDATA[Visualizza il codice sorgente su %1$s<br/>Unisciti al nostro canale %2$s]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Gestire</string>
@@ -53,7 +53,7 @@
     <string name="patch_local">Locale</string>
     <string name="patch_local_desc">Patchare un\'applicazione senza moduli incorporati.\nL\'ambito di Xposed può essere modificato dinamicamente senza dover rifare la patch.\nLe applicazioni locali patchate possono essere eseguite solo sul dispositivo locale.</string>
     <string name="patch_integrated">Integrato</string>
-    <string name="patch_integrated_desc">Patcha un\'app con moduli incorporati.\nL\'app patchata può essere eseguita senza il manager, ma non può essere gestita dinamicamente.\nLe app patchate integrate possono essere utilizzate su dispositivi su cui non è installato NPatch Manager.</string>
+    <string name="patch_integrated_desc">Patcha un\'app con moduli incorporati.\nL\'app patchata può essere eseguita senza il manager, ma non può essere gestita dinamicamente.\nLe app patchate integrate possono essere utilizzate su dispositivi su cui non è installato LSPatch Manager.</string>
     <string name="patch_embed_modules">Moduli incorporati</string>
     <string name="patch_debuggable">Debuggabile</string>
     <string name="patch_sigbypass">Bypass della firma</string>
