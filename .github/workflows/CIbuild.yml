@@ -20,13 +20,14 @@ jobs:
       CCACHE_BASEDIR: '${{ github.workspace }}'
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        submodules: 'recursive'
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
 
-    - name: Write key
+      # 为向主分支推送内容而写入密钥
+      - name: Write key
       if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
       run: |
         if [ ! -z "${{ secrets.KEY_STORE }}" ]; then
@@ -37,98 +38,110 @@ jobs:
           echo ${{ secrets.KEY_STORE }} | base64 --decode > key.jks
         fi
 
-    - name: Checkout libxposed/api
-      uses: actions/checkout@v3
-      with:
-        repository: libxposed/api
-        path: libxposed/api
+      # 检查 libxposed/api
+      - name: Checkout libxposed/api
+        uses: actions/checkout@v3
+        with:
+          repository: libxposed/api
+          path: libxposed/api
 
-    - name: Checkout libxposed/service
-      uses: actions/checkout@v3
-      with:
-        repository: libxposed/service
-        path: libxposed/service
+      # 检查 libxposed/service
+      - name: Checkout libxposed/service
+        uses: actions/checkout@v3
+        with:
+          repository: libxposed/service
+          path: libxposed/service
 
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      # 安装 Java 17
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-        gradle-home-cache-cleanup: true
+      # 安装 Gradle
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-home-cache-cleanup: true
 
-    - name: Set up ccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        max-size: 2G
-        key: ${{ runner.os }}
-        restore-keys: ${{ runner.os }}
-        save: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+      # 设置 ccache
+      - name: Set up ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          max-size: 2G
+          key: ${{ runner.os }}
+          restore-keys: ${{ runner.os }}
+          save: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
-    - name: Build dependencies
-      working-directory: libxposed
-      run: |
-        cd api
-        echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
-        ./gradlew :api:publishApiPublicationToMavenLocal
-        cd ..
-        cd service
-        echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
-        ./gradlew :interface:publishInterfacePublicationToMavenLocal
+      # 为 libxposed 构建依赖性
+      - name: Build dependencies
+        working-directory: libxposed
+        run: |
+          cd api
+          echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
+          ./gradlew :api:publishApiPublicationToMavenLocal
+          cd ..
+          cd service
+          echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
+          ./gradlew :interface:publishInterfacePublicationToMavenLocal
 
-    - name: Build with Gradle
-      run: |
-        echo 'org.gradle.parallel=true' >> gradle.properties
-        echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
-        echo 'android.native.buildOutput=verbose' >> gradle.properties
-        ./gradlew buildAll
+      # 用 Gradle 构建
+      - name: Build with Gradle
+        run: |
+          echo 'org.gradle.parallel=true' >> gradle.properties
+          echo 'org.gradle.jvmargs=-Xmx2048m' >> gradle.properties
+          echo 'android.native.buildOutput=verbose' >> gradle.properties
+          ./gradlew buildAll
 
-    - name: Upload Debug artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: lspatch-debug
-        path: out/debug/*
+      # 提交 Debug 版本
+      - name: Upload Debug artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lspatch-debug
+          path: out/debug/*
 
-    - name: Upload Release artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: lspatch-release
-        path: out/release/*
+      # 提交 Release 版本
+      - name: Upload Release artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lspatch-release
+          path: out/release/*
 
-    - name: Upload mappings
-      uses: actions/upload-artifact@v3
-      with:
-        name: mappings
-        path: |
-          patch-loader/build/outputs/mapping
-          manager/build/outputs/mapping
+      # 提交 mappings
+      - name: Upload mappings
+        uses: actions/upload-artifact@v3
+        with:
+          name: mappings
+          path: |
+            patch-loader/build/outputs/mapping
+            manager/build/outputs/mapping
 
-    - name: Upload symbols
-      uses: actions/upload-artifact@v3
-      with:
-        name: symbols
-        path: |
-          patch-loader/build/symbols
-
-    - name: Post to channel
-      if: ${{ github.event_name != 'pull_request' && success() && github.ref == 'refs/heads/master' }}
-      env:
-        CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-        DISCUSSION_ID: ${{ secrets.DISCUSSION_ID }}
-        TOPIC_ID: ${{ secrets.TOPIC_ID }}
-        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-        COMMIT_URL: ${{ github.event.head_commit.url }}
-      run: |
-        if [ ! -z "${{ secrets.BOT_TOKEN }}" ]; then
-          export jarRelease=$(find out/release -name "*.jar")
-          export managerRelease=$(find out/release -name "*.apk")
-          export jarDebug=$(find out/debug -name "*.jar")
-          export managerDebug=$(find out/debug -name "*.apk")
-          ESCAPED=`python3 -c 'import json,os,urllib.parse; msg = json.dumps(os.environ["COMMIT_MESSAGE"]); print(urllib.parse.quote(msg if len(msg) <= 1024 else json.dumps(os.environ["COMMIT_URL"])))'`
-          curl -v "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FjarRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FmanagerRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FjarDebug%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FmanagerDebug%22%2C%22caption%22:${ESCAPED}%7D%5D" -F jarRelease="@$jarRelease" -F managerRelease="@$managerRelease" -F jarDebug="@$jarDebug" -F managerDebug="@$managerDebug"
-          # curl -v "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${DISCUSSION_ID}&message_thread_id=${TOPIC_ID}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FjarRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FmanagerRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FjarDebug%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FmanagerDebug%22%2C%22caption%22:${ESCAPED}%7D%5D" -F jarRelease="@$jarRelease" -F managerRelease="@$managerRelease" -F jarDebug="@$jarDebug" -F managerDebug="@$managerDebug"
-        fi
+      # 提交 symbols
+      - name: Upload symbols
+        uses: actions/upload-artifact@v3
+        with:
+          name: symbols
+          path: |
+            patch-loader/build/symbols
+            
+     # 成功构建后花生到频道
+      - name: Post to channel
+        if: github.event_name == 'push' && success() && github.ref == 'refs/heads/master'
+        env:
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          DISCUSSION_ID: ${{ secrets.DISCUSSION_ID }}
+          TOPIC_ID: ${{ secrets.TOPIC_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
+        run: |
+          if [ ! -z "${{ secrets.BOT_TOKEN }}" ]; then
+            export jarRelease=$(find out/release -name "*.jar")
+            export managerRelease=$(find out/release -name "*.apk")
+            export jarDebug=$(find out/debug -name "*.jar")
+            export managerDebug=$(find out/debug -name "*.apk")
+            ESCAPED=python3 -c 'import json,os,urllib.parse; msg = json.dumps(os.environ["COMMIT_MESSAGE"]); print(urllib.parse.quote(msg if len(msg) <= 1024 else json.dumps(os.environ["COMMIT_URL"])))'
+            #curl -v "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FjarRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FmanagerRelease%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FjarDebug%22%7D%2C%7B%22type%22%3A%22document%22%2C%20%22media%22%3A%22attach%3A%2F%2FmanagerDebug%22%2C%22caption%22:${ESCAPED}%7D%5D" -F jarRelease="@$jarRelease" -F managerRelease="@$managerRelease" -F jarDebug="@$jarDebug" -F managerDebug="@$managerDebug"
+          fi
+          
