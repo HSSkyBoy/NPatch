@@ -125,9 +125,9 @@ jobs:
           path: |
             patch-loader/build/symbols
             
-     # 成功构建后花生到频道
+     # 成功构建后发送到TG频道
       - name: Post to channel
-        if: github.event_name == 'push' && success() && github.ref == 'refs/heads/master'
+        if: ${{ github.event_name != 'pull_request' && success() && github.ref == 'refs/heads/master' }} && false
         env:
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
           DISCUSSION_ID: ${{ secrets.DISCUSSION_ID }}
