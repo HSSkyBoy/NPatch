@@ -208,10 +208,6 @@ public class LSPApplication {
             File curProfileFile = new File(profileDir, splitName == null ? "primary.prof" : splitName + ".split.prof").getAbsoluteFile();
             Log.d(TAG, "Processing " + curProfileFile.getAbsolutePath());
             try {
-                if (!curProfileFile.exists()) {
-                    Files.createFile(curProfileFile.toPath(), attrs);
-                    continue;
-                }
                 if (!curProfileFile.canWrite() && Files.size(curProfileFile.toPath()) == 0) {
                     Log.d(TAG, "Skip profile " + curProfileFile.getAbsolutePath());
                     continue;
@@ -223,6 +219,8 @@ public class LSPApplication {
                         Log.e(TAG, "Failed to delete and clear profile file " + curProfileFile.getAbsolutePath(), e);
                     }
                     Os.chmod(curProfileFile.getAbsolutePath(), 00400);
+                } else {
+                    Files.createFile(curProfileFile.toPath(), attrs);
                 }
             } catch (Throwable e) {
                 Log.e(TAG, "Failed to disable profile file " + curProfileFile.getAbsolutePath(), e);
