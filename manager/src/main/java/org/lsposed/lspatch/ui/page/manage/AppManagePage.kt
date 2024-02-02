@@ -57,6 +57,7 @@ import org.lsposed.lspatch.ui.util.LocalSnackbarHost
 import org.lsposed.lspatch.ui.viewmodel.manage.AppManageViewModel
 import org.lsposed.lspatch.ui.viewstate.ProcessingState
 import org.lsposed.lspatch.util.LSPPackageManager
+import org.lsposed.lspatch.util.ShizukuApi
 import java.io.IOException
 
 private const val TAG = "AppManagePage"
@@ -191,7 +192,11 @@ fun AppManageBody(
                             onClick = {
                                 expanded = false
                                 scope.launch {
-                                    viewModel.dispatch(AppManageViewModel.ViewAction.UpdateLoader(it.first, it.second))
+                                    if (!ShizukuApi.isPermissionGranted) {
+                                        snackbarHost.showSnackbar(shizukuUnavailable)
+                                    } else {
+                                        viewModel.dispatch(AppManageViewModel.ViewAction.UpdateLoader(it.first, it.second))
+                                    }
                                 }
                             }
                         )
@@ -212,6 +217,19 @@ fun AppManageBody(
                             }
                         )
                     }
+                    DropdownMenuItem(
+                        text = { Text(stringResource(R.string.manage_optimize)) },
+                        onClick = {
+                            expanded = false
+                            scope.launch {
+                                if (!ShizukuApi.isPermissionGranted) {
+                                    snackbarHost.showSnackbar(shizukuUnavailable)
+                                } else {
+                                    viewModel.dispatch(AppManageViewModel.ViewAction.PerformOptimize(it.first))
+                                }
+                            }
+                        }
+                    )
                     val uninstallSuccessfully = stringResource(R.string.manage_uninstall_successfully)
                     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                         if (result.resultCode == Activity.RESULT_OK) {
