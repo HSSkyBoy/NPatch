@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.pm.PackageInstaller
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,9 +29,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -39,6 +42,7 @@ import com.ramcosta.composedestinations.result.NavResult
 import com.ramcosta.composedestinations.result.ResultRecipient
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.lsposed.lspatch.JUtils
 import org.lsposed.lspatch.R
 import org.lsposed.lspatch.lspApp
 import org.lsposed.lspatch.ui.component.AnywhereDropdown
@@ -55,7 +59,6 @@ import org.lsposed.lspatch.ui.viewmodel.NewPatchViewModel.PatchState
 import org.lsposed.lspatch.ui.viewmodel.NewPatchViewModel.ViewAction
 import org.lsposed.lspatch.util.LSPPackageManager
 import org.lsposed.lspatch.util.LSPPackageManager.AppInfo
-import org.lsposed.lspatch.util.ShizukuApi
 
 private const val TAG = "NewPatchPage"
 
@@ -331,6 +334,20 @@ private fun PatchOptionsBody(modifier: Modifier, onAddEmbed: () -> Unit) {
             title = stringResource(R.string.patch_debuggable)
         )
         SettingsCheckBox(
+            modifier = Modifier.clickable { viewModel.injectProvider = !viewModel.injectProvider },
+            checked = viewModel.injectProvider,
+            icon = Icons.Outlined.AddCard,
+            title = stringResource(R.string.patch_inject_mt_provider),
+            desc = stringResource(R.string.patch_inject_mt_provider_desc)
+        )
+        SettingsCheckBox(
+            modifier = Modifier.clickable { viewModel.outputLog = !viewModel.outputLog },
+            checked = viewModel.outputLog,
+            icon = Icons.Outlined.AddCard,
+            title = stringResource(R.string.output_log_to_media),
+            desc = stringResource(R.string.output_log_to_media_desc)
+        )
+        SettingsCheckBox(
             modifier = Modifier.clickable { viewModel.overrideVersionCode = !viewModel.overrideVersionCode },
             checked = viewModel.overrideVersionCode,
             icon = Icons.Outlined.Layers,
@@ -422,25 +439,30 @@ private fun DoPatchBody(modifier: Modifier, navigator: DestinationsNavigator) {
             when (viewModel.patchState) {
                 PatchState.PATCHING -> BackHandler {}
                 PatchState.FINISHED -> {
-                    val shizukuUnavailable = stringResource(R.string.shizuku_unavailable)
                     val installSuccessfully = stringResource(R.string.patch_install_successfully)
                     val installFailed = stringResource(R.string.patch_install_failed)
                     val copyError = stringResource(R.string.copy_error)
                     var installing by remember { mutableStateOf(false) }
-                    if (installing) InstallDialog(viewModel.patchApp) { status, message ->
-                        scope.launch {
-                            installing = false
-                            if (status == PackageInstaller.STATUS_SUCCESS) {
-                                lspApp.globalScope.launch { snackbarHost.showSnackbar(installSuccessfully) }
-                                navigator.navigateUp()
-                            } else if (status != LSPPackageManager.STATUS_USER_CANCELLED) {
-                                val result = snackbarHost.showSnackbar(installFailed, copyError)
-                                if (result == SnackbarResult.ActionPerformed) {
-                                    val cm = lspApp.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                    cm.setPrimaryClip(ClipData.newPlainText("LSPatch", message))
+                    if (installing) {
+                        InstallDialog(viewModel.patchApp) { status, message ->
+                            scope.launch {
+                                installing = false
+                                if (status == PackageInstaller.STATUS_SUCCESS) {
+                                    lspApp.globalScope.launch { snackbarHost.showSnackbar(installSuccessfully) }
+                                    navigator.navigateUp()
+                                } else if (status != LSPPackageManager.STATUS_USER_CANCELLED) {
+                                    val result = snackbarHost.showSnackbar(installFailed, copyError)
+                                    if (result == SnackbarResult.ActionPerformed) {
+                                        val cm = lspApp.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                        cm.setPrimaryClip(ClipData.newPlainText("LSPatch", message))
+                                    }
                                 }
                             }
                         }
+                    }
+
+                    Row {
+
                     }
                     Row(Modifier.padding(top = 12.dp)) {
                         Button(
@@ -448,17 +470,10 @@ private fun DoPatchBody(modifier: Modifier, navigator: DestinationsNavigator) {
                             onClick = { navigator.navigateUp() },
                             content = { Text(stringResource(R.string.patch_return)) }
                         )
-                        Spacer(Modifier.weight(0.2f))
                         Button(
                             modifier = Modifier.weight(1f),
                             onClick = {
-                                if (!ShizukuApi.isPermissionGranted) {
-                                    scope.launch {
-                                        snackbarHost.showSnackbar(shizukuUnavailable)
-                                    }
-                                } else {
-                                    installing = true
-                                }
+                                installing = true
                             },
                             content = { Text(stringResource(R.string.install)) }
                         )
@@ -491,19 +506,15 @@ private fun DoPatchBody(modifier: Modifier, navigator: DestinationsNavigator) {
 @Composable
 private fun InstallDialog(patchApp: AppInfo, onFinish: (Int, String?) -> Unit) {
     val scope = rememberCoroutineScope()
-    var uninstallFirst by remember { mutableStateOf(ShizukuApi.isPackageInstalledWithoutPatch(patchApp.app.packageName)) }
-    var installing by remember { mutableStateOf(0) }
-    suspend fun doInstall() {
+    var uninstallFirst by remember { mutableStateOf(JUtils.checkIsApkFixedByLSP(lspApp,patchApp.app.packageName)) }
+    fun doInstall() {
         Log.i(TAG, "Installing app ${patchApp.app.packageName}")
-        installing = 1
-        val (status, message) = LSPPackageManager.install()
-        installing = 0
-        Log.i(TAG, "Installation end: $status, $message")
-        onFinish(status, message)
+        JUtils.installApkByPackageManager(lspApp, lspApp.targetApkPath)
     }
 
     LaunchedEffect(Unit) {
         if (!uninstallFirst) {
+            onFinish(LSPPackageManager.STATUS_USER_CANCELLED, "User cancelled")
             doInstall()
         }
     }
@@ -514,18 +525,11 @@ private fun InstallDialog(patchApp: AppInfo, onFinish: (Int, String?) -> Unit) {
             confirmButton = {
                 TextButton(
                     onClick = {
+                        onFinish(LSPPackageManager.STATUS_USER_CANCELLED, "Reset")
                         scope.launch {
                             Log.i(TAG, "Uninstalling app ${patchApp.app.packageName}")
+                            JUtils.uninstallApkByPackageName(lspApp,patchApp.app.packageName)
                             uninstallFirst = false
-                            installing = 2
-                            val (status, message) = LSPPackageManager.uninstall(patchApp.app.packageName)
-                            installing = 0
-                            Log.i(TAG, "Uninstallation end: $status, $message")
-                            if (status == PackageInstaller.STATUS_SUCCESS) {
-                                doInstall()
-                            } else {
-                                onFinish(status, message)
-                            }
                         }
                     },
                     content = { Text(stringResource(android.R.string.ok)) }
@@ -545,21 +549,6 @@ private fun InstallDialog(patchApp: AppInfo, onFinish: (Int, String?) -> Unit) {
                 )
             },
             text = { Text(stringResource(R.string.patch_uninstall_text)) }
-        )
-    }
-
-    if (installing != 0) {
-        AlertDialog(
-            onDismissRequest = {},
-            confirmButton = {},
-            title = {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = stringResource(if (installing == 1) R.string.installing else R.string.uninstalling),
-                    fontFamily = FontFamily.Serif,
-                    textAlign = TextAlign.Center
-                )
-            }
         )
     }
 }
