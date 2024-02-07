@@ -15,9 +15,10 @@ enum class BottomBarDestination(
     val iconSelected: ImageVector,
     val iconNotSelected: ImageVector
 ) {
-    Repo(RepoScreenDestination, R.string.screen_repo, Icons.Filled.GetApp, Icons.Outlined.GetApp),
-    Manage(ManageScreenDestination, R.string.screen_manage, Icons.Filled.Dashboard, Icons.Outlined.Dashboard),
+   // Repo(RepoScreenDestination, R.string.screen_repo, Icons.Filled.GetApp, Icons.Outlined.GetApp),
+    
     Home(HomeScreenDestination, R.string.app_name, Icons.Filled.Home, Icons.Outlined.Home),
-    Logs(LogsScreenDestination, R.string.screen_logs, Icons.Filled.Assignment, Icons.Outlined.Assignment),
+    Manage(ManageScreenDestination, R.string.screen_manage, Icons.Filled.Dashboard, Icons.Outlined.Dashboard),
+   // Logs(LogsScreenDestination, R.string.screen_logs, Icons.Filled.Assignment, Icons.Outlined.Assignment),
     Settings(SettingsScreenDestination, R.string.screen_settings, Icons.Filled.Settings, Icons.Outlined.Settings);
 }
