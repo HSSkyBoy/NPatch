@@ -90,7 +90,8 @@ public class LSPApplication {
         // WARN: Since it uses `XResource`, the following class should not be initialized
         // before forkPostCommon is invoke. Otherwise, you will get failure of XResources
         Log.i(TAG, "Load modules");
-        LSPLoader.initModules(appLoadedApk);
+	        LSPLoader.initLegacyModules(appLoadedApk);
+//        LSPLoader.initModules(appLoadedApk);
         Log.i(TAG, "Modules initialized");
 
         switchAllClassLoader();
